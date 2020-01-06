@@ -1,78 +1,87 @@
-function counter(state, action) {
-  if (typeof state === "undefined") {
-    return 0;
-  }
+let val = 1;
 
+function counter(state = 0, action) {
   switch (action.type) {
     case "INCREMENT":
-      return state + 1;
+      return state < 100 ? state + action.payload : alert("limit exceeded");
+
     case "DECREMENT":
-      return state - 1;
-    default:
-      return state;
-  }
-}
-
-function incrementByNumber(state, action) {
-  if (typeof state === "undefined") {
-    return 0;
-  }
-
-  switch (action.type) {
+      return state > 0 ? state - action.payload : alert("limit exceeded");
     case "five":
-      return state + 5;
+      return state + val;
+
     case "eight":
-      return state + 8;
+      return state + val;
     case "ten":
-      return state + 10;
+      return state + val;
     case "fifteen":
-      return state + 15;
+      return state + val;
     case "twenty":
-      return state + 20;
+      return state + val;
     default:
       return state;
   }
 }
+
+// function incrementByNumber(state, action) {
+//   if (typeof state === "undefined") {
+//     return 0;
+//   }
+
+//   switch (action.type) {
+//     case "five":
+//       return state + 5;
+//     // case "decrementbyfive":
+//     //   return state - 5;
+//     case "eight":
+//       return state + 8;
+//     case "ten":
+//       return state + 10;
+//     case "fifteen":
+//       return state + 15;
+//     case "twenty":
+//       return state + 20;
+//     default:
+//       return;
+//   }
+// }
 
 var store = Redux.createStore(counter);
-var storee = Redux.createStore(incrementByNumber);
+// var storee = Redux.createStore(incrementByNumber);
+// console.log(storee.getState());
 
 var valueEl = document.getElementById("value");
 // console.log(valueEl);
 
 function render() {
-  valueEl.innerHTML = store.getState().toString();
+  valueEl.innerHTML = store.getState();
 }
 
 render();
 store.subscribe(render);
 
-function renderr() {
-  valueEl.innerHTML = storee.getState().toString();
-}
-
-renderr();
-storee.subscribe(renderr);
-
 document.getElementById("increment").addEventListener("click", function() {
-  store.dispatch({ type: "INCREMENT" });
+  store.dispatch({ type: "INCREMENT", payload: val });
 });
 
 document.getElementById("decrement").addEventListener("click", function() {
-  store.dispatch({ type: "DECREMENT" });
+  store.dispatch({ type: "DECREMENT", payload: val });
 });
 document.getElementById("five").addEventListener("click", function() {
-  storee.dispatch({ type: "five" });
+  return (val = 5);
 });
 document.getElementById("eight").addEventListener("click", function() {
-  storee.dispatch({ type: "eight" });
+  return (val = 8);
 });
 document.getElementById("ten").addEventListener("click", function() {
-  storee.dispatch({ type: "ten" });
+  return (val = 10);
 });
 document.getElementById("fifteen").addEventListener("click", function() {
-  storee.dispatch({ type: "fifteen" });
+  return (val = 15);
 });
 document.getElementById("twenty").addEventListener("click", function() {
-  storee.dispatch({ type: "twenty" });
+  return (val = 20);
 });
+// document.getElementById("decrement").addEventListener("click", function() {
+//   storee.dispatch({ type: "decrementbyfive" });
+// });
