@@ -1,0 +1,20 @@
+button {
+  color: tomato;
+  border-radius: 2rem;
+  padding: 10px;
+  border: 1px solid yellow;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+#value {
+  font-size: 8rem;
+  font-weight: 400;
+  color: darkmagenta;
+}
+
+p {
+  font-size: 1.1rem;
+  font-weight: 200;
+  color: firebrick;
+}
